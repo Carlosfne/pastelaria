@@ -1,0 +1,12 @@
+export { default as Account } from './Account';
+export { default as Dashboard } from './Dashboard';
+export { default as Icons } from './Icons';
+export { default as NotFound } from './NotFound';
+export { default as Settings } from './Settings';
+export { default as SignIn } from './SignIn';
+export { default as SignUp } from './SignUp';
+export { default as UserList } from './UserList';
+export { default as Expositores } from './Expositores';
+export { default as Mapas } from './Mapas';
+export { default as Noticias } from './Noticias';
+export { default as Fornecedores } from './Fornecedores';

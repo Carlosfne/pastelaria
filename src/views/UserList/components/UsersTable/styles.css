@@ -1,0 +1,24 @@
+.btns-option{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.btn-edit{
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  background: url('../../../../assets/img/edit_button/Caminho230.png') 0% 0% no-repeat padding-box;
+  border:none
+}
+.btn-delete{
+  background: url('../../../../assets/img/delete_outline-24px/delete_outline-24px.png') 0% 0% no-repeat padding-box;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  border: none;
+}
+.toast{
+  background-color: #48681c;
+  width: 100%;
+  height: 100%;
+}

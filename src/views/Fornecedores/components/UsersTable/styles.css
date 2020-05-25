@@ -1,0 +1,47 @@
+.btns-options {
+  display: flex;
+  align-items: center;
+}
+.dialog-confirm {
+  background-color: #eeb30f;
+  width: 250px;
+  height: 200px;
+  align-items: center;
+}
+.dialog-confirm p {
+  font-size: 18px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 700;
+  text-align: center;
+  color: #000;
+}
+.dialog-confirm h3 {
+  font-size: 22px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 700;
+  text-align: center;
+  color: #000;
+}
+.dialog-btns {
+  display: flex;
+  justify-content: center;
+}
+.btn-negative {
+  background-color: red;
+  border: none;
+  border-radius: 4px;
+  margin-right: 20px;
+  width: 40px;
+  height: 30px;
+  color: #fff;
+  font-weight: 600;
+}
+.btn-confirm {
+  background-color: green;
+  border: none;
+  border-radius: 4px;
+  width: 40px;
+  height: 30px;
+  color: #fff;
+  font-weight: 600;
+}

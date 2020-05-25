@@ -1,0 +1,44 @@
+input[type=text]{
+  width: 100%;
+  border: 2px solid #aaa;
+  border-radius: 4px;
+  margin: 8px 0;
+  outline: none;
+  padding: 8px;
+  box-sizing: border-box;
+  transition: .3s;
+}
+input[type=text]:focus{
+  border-color: dodgerblue;
+  box-shadow: 0 0 8px 0 dodgerblue;
+
+}
+input[type= file]{
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  padding: 8px;
+  box-sizing: border-box;
+  
+}
+
+#btn {
+  color: white;
+  background-color: blue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  margin: auto;
+  top:0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}

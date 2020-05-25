@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap');
+
+.btn-add-new-produto {
+  width: 230px;
+  height: 45px;
+  border-radius: 18px;
+  font-size: 18px;
+  background-color: #48681c;
+  color: #fff;
+  padding: 0;
+  border: none;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 500;
+  
+}
+.form-produto-adicionar {
+  width: 500px;
+}
+.form-produto-adicionar h1{
+  padding: 10px;
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #48681c;
+  font-weight: 700;
+}
+.form-produto-adicionar label {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #a4a4a4;
+  font-size: 16px;
+  padding-left: 15px;
+}
+.input-produto{
+  width: 480px;
+  padding: 10px;
+  margin-left: 10px;
+  font-size: 18px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 500;
+  border-radius: 8px;
+  border-style: none;
+  background-color: #ebe9e9;
+}
+.btn-salvar-produto{
+  width: 150px;
+  height: 45px;
+  border-radius: 18px;
+  font-size: 18px;
+  background-color: #48681c;
+  color: #fff;
+  padding: 0;
+  border: none;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 500;
+  float: right;
+  margin: 15px;
+}

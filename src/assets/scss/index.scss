@@ -1,0 +1,29 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: #f4f6f8;
+  height: 100%;
+  opacity: 0.9;
+  background-repeat: no-repeat;
+}
+
+a {
+  text-decoration: none;
+}
+main {
+  background-image: url('../img/reiDagua.png');
+
+}
+#root {
+  height: 100%;
+}
