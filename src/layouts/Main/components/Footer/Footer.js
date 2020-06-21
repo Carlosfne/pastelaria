@@ -24,15 +24,15 @@ const Footer = props => {
         &copy;{' '}
         <Link
           component="a"
-          href="https://www.linkedin.com/in/carlos-eduardo-961a39132/"
+          // href="https://www.linkedin.com/in/carlos-eduardo-961a39132/"
           target="_blank"
         >
-          Carlos Eduardo Jr | Desenvolvedor FullStack( ReactJs, React-Native, Node.js e Flutter)
+          CFM - Software House
         </Link>
         . 2020
       </Typography>
       <Typography variant="caption">
-        Code is life.
+        Software House.
       </Typography>
     </div>
   );

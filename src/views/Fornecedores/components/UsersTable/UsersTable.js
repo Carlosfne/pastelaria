@@ -104,21 +104,28 @@ const UsersTable = props => {
       bottom: false,
       right: false,
     });
-    async function AdicionaProduto(data){
+    async function UpdateFornecedor(data){
       console.log(data)
-      api.post('produtos/criar',data)
+      var formData = new FormData();
+      formData.append('id', id)
+      formData.append('nome', document.getElementById('nome').value)
+      formData.append('contato', document.getElementById('contato').value)
+      api.post('fornecedor/alterar',formData)
         .then(response => {
-          // alert('Produto criado com sucesso!')
+          toast.success('Fornecedor alterado com sucesso!')
           loadProdutos()      
         })
-        .catch(error => console.log(error.response))
+        .catch(error => {
+          console.log(error.response)
+
+        })
     }
   
     const [ fornecedores, setFornecedores] =useState([])
     const [ produtoUnique, setProdutoUnique] =useState([])
   
     async function getFornecedores(){
-      api.post('fornecedor/detalhe')
+      api.get(`fornecedor/detalhe/${id}`)
         .then(response => {
           setFornecedores(response.data.fornecedor)
           // console.log(response.data)
@@ -143,27 +150,15 @@ const UsersTable = props => {
   
     function FormTipo({ onSubmit }) {
   
-      const [ descricao, setDescricao] =useState('')
-      const [ quantidadeAtual, setQntdAtual] =useState('')
-      const [ quantidadeMinima, setQntdMinima] =useState('')
-      const [ quantidadeMaxima, setQntdMaxima] =useState('')
-      const [ validade, setValidade ] =useState('')
-      const [ fornecedor, setFornecedor ] =useState('')
-      const [ preco, setPreco ] =useState('')
-      
-      console.log(produtoUnique)
+      const [ nome, setNome ] = useState('')
+      const [ contato, setContato ] = useState('')
   
       async function handleSubmit(e){
         e.preventDefault();
   
         await onSubmit({
-          descricao,
-          quantidadeAtual,
-          quantidadeMinima,
-          quantidadeMaxima,
-          validade,
-          preco,
-          fornecedor:document.getElementById('fornecedor').value,
+          nome:document.getElementById('nome').value,
+          contato:document.getElementById('contato').value
         });
       }
           
@@ -175,14 +170,16 @@ const UsersTable = props => {
               <label htmlFor="descricao">Nome</label>
               <input 
                 className="input-produto"
-                id="descricao"
-                onChange={e=> setDescricao(e.target.value)}                
+                id="nome"
+                onChange={e=> setNome(e.target.value)}
+                defaultValue={fornecedores.nome}            
               />
               <label htmlFor="descricao">Contato</label>
               <input 
                 className="input-produto"
-                id="qntatual"
-                onChange={e=>setQntdAtual( e.target.value)}                
+                id="contato"
+                onChange={e=>setContato( e.target.value)}                
+                defaultValue={fornecedores.contato}
               />              
             </div>
             <button className="btn-salvar-produto">Salvar</button>
@@ -203,7 +200,7 @@ const UsersTable = props => {
         <FormTipo
           onClick={toggleDrawer(side, false)}
           onKeyDown={toggleDrawer(side, false)}
-          onSubmit={AdicionaProduto}
+          onSubmit={UpdateFornecedor}
           role="presentation"
         />
   
@@ -243,7 +240,21 @@ const UsersTable = props => {
           loadProdutos()
           toast.success(`Fornecedor ${response.data.nome} salvo com sucesso!`,{ position: toast.POSITION.TOP_CENTER })      
         })
-        .catch(error => console.log(error.response))
+        .catch(error => {
+          console.log(error.response)
+          if(error.response.data.nome){
+            toast.error('Favor digitar um nome para o fornecedor')
+            document.getElementById('nome').style.borderStyle = 'solid';
+            document.getElementById('nome').style.borderWidth = '1px';
+            document.getElementById('nome').style.borderColor = '#48681c';
+          }
+          if(error.response.data.contato){
+            toast.error('Favor digitar um número de telefone para o fornecedor')
+            document.getElementById('contato').style.borderStyle = 'solid';
+            document.getElementById('contato').style.borderWidth = '1px';
+            document.getElementById('contato').style.borderColor = '#48681c';
+          }
+        })
     }
   
     const [ fornecedores, setFornecedores] =useState([])
@@ -288,13 +299,13 @@ const UsersTable = props => {
               <label htmlFor="descricao">Nome do Fornecedor</label>
               <input 
                 className="input-produto"
-                id="descricao"
+                id="nome"
                 onChange={e=> setNome(e.target.value)}                
               />
               <label htmlFor="descricao">Contato</label>
               <input 
                 className="input-produto"
-                id="qntatual"
+                id="contato"
                 onChange={e=>setContato( e.target.value)}                
               />              
             </div>
@@ -354,17 +365,19 @@ const UsersTable = props => {
       loadStep()
     };
     async function loadStep() {
-      const response = await api.post(`fornecedor/detalhe?id=${id}`)
+      const response = await api.get(`fornecedor/detalhe/${id}`)
       setMarcaIn(response.data.fornecedor)
       console.log(response.data)
     }
 
     async function DeleteMarca() {
-      api.post(`/produtos/remover?id=${id}`)
+      var formData = new FormData();
+      formData.append('id', id)
+      api.post(`/fornecedor/remover`,formData)
         .then(response => {
-          // toast.info(response.data[0])
-          // loadClientes()
-          console.log(response.data)
+          toast.success('Fornecedor Excluído com sucesso!')
+          loadProdutos()
+          console.log("fornecedor excluido com sucesso")
         })
         .catch(error => console.log(error))
       setOpen(false);
@@ -392,8 +405,9 @@ const UsersTable = props => {
             <DialogTitle id="alert-dialog-title"> <p> Excluir Fornecedor? </p></DialogTitle>
             <DialogContent>
               <DialogContentText id="alert-dialog-description">
-                {/* <h3>{marcain.descricao}</h3> */}
-                <h3>Fornecedor</h3>
+                <h3>{marcain.nome}</h3>
+                {console.log(marcain)}
+                {/* <h3>Fornecedor</h3> */}
               </DialogContentText>
             </DialogContent>
             <div className="dialog-btns">

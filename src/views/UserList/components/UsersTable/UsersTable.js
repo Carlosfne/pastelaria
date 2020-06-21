@@ -66,12 +66,24 @@ const UsersTable = props => {
     });
     async function EditarProduto(onSubmit){
       console.log(onSubmit)
-      // var data = new FormData();
-      api.post('produtos/alterar',onSubmit)
+      // var myForm = document.getElementById('from');
+      // const data = new FormData(myForm);
+
+      var formData = new FormData();
+      formData.append('id', id)
+      formData.append('descricao', document.getElementById('descricao').value)
+      formData.append('quantidadeAtual', document.getElementById('qntatual').value)
+      formData.append('quantidadeMinima', document.getElementById('qntminima').value)
+      formData.append('quantidadeMaxima', document.getElementById('qntmaxima').value)
+      formData.append('validade', document.getElementById('validade').value)
+      formData.append('preco', document.getElementById('preco').value)
+      // formData.append('fornecedor',{'id': document.getElementById('fornecedor').value})
+      console.log(formData)
+      api.post('produtos/alterar',formData)
         .then(response => {
-          // alert('Produto criado com sucesso!')
-          console.log(response.data)
-          // loadProdutos()      
+          toast.success(`Produto Alterado com sucesso`)
+          // console.log(response.data)
+          loadProdutos()      
         })
         .catch(error => console.log(error.response))
     }
@@ -133,7 +145,7 @@ const UsersTable = props => {
       return (
         <div className="form-produto-adicionar">
           <h1>Editar produto</h1>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} id='from'>
             <div className="div-input-label">
               <label htmlFor="descricao">Descrição do novo produto</label>
               <input 
@@ -251,7 +263,51 @@ const UsersTable = props => {
           loadProdutos()
           toast.success(`Produto ${response.data.descricao} adicionado com sucesso`, { position: toast.POSITION.TOP_CENTER})                
         })
-        .catch(error => console.log(error.response))
+        .catch(error => {
+          console.log(error.response)
+          if(error.response.data.descricao){
+            toast.error('Favor inserir a descrição do produto')
+            document.getElementById('descricao').focus();
+            document.getElementById('descricao').style.borderStyle = 'solid';
+            document.getElementById('descricao').style.borderWidth = '1px';
+            document.getElementById('descricao').style.borderColor = '#48681c';
+          }
+          if(error.response.data.preco){
+            toast.error('Favor inserir o preço do produto')
+            document.getElementById('preco').focus();
+            document.getElementById('preco').style.borderStyle = 'solid';
+            document.getElementById('preco').style.borderWidth = '1px';
+            document.getElementById('preco').style.borderColor = '#48681c';
+          }
+          if(error.response.data.quantidadeAtual){
+            toast.error('Favor inserir a quantidade atual do produto')
+            document.getElementById('qntatual').focus();
+            document.getElementById('qntatual').style.borderStyle = 'solid';
+            document.getElementById('qntatual').style.borderWidth = '1px';
+            document.getElementById('qntatual').style.borderColor = '#48681c';
+          }
+          if(error.response.data.quantidadeMaxima){
+            toast.error('Favor inserir a quantidade máxima do produto')
+            document.getElementById('qntmaxima').focus();
+            document.getElementById('qntmaxima').style.borderStyle = 'solid';
+            document.getElementById('qntmaxima').style.borderWidth = '1px';
+            document.getElementById('qntmaxima').style.borderColor = '#48681c';
+          }
+          if(error.response.data.quantidadeMinima){
+            toast.error('Favor inserir a quantidade mínima do produto')
+            document.getElementById('qntminima').focus();
+            document.getElementById('qntminima').style.borderStyle = 'solid';
+            document.getElementById('qntminima').style.borderWidth = '1px';
+            document.getElementById('qntminima').style.borderColor = '#48681c';
+          }
+          if(error.response.data.validade){
+            toast.error('Favor inserir a validade mínima do produto')
+            document.getElementById('validade').focus();
+            document.getElementById('validade').style.borderStyle = 'solid';
+            document.getElementById('validade').style.borderWidth = '1px';
+            document.getElementById('validade').style.borderColor = '#48681c';
+          }
+        })
     }
   
     const [ fornecedores, setFornecedores] =useState([])
@@ -416,11 +472,12 @@ const UsersTable = props => {
     }
 
     async function DeleteMarca() {
-      api.post(`/produtos/remover?id=${id}`)
+      var formData = new FormData();
+      formData.append('id', id)
+      api.post(`/produtos/remover`,formData)
         .then(response => {
-          // toast.info(response.data[0])
-          // loadClientes()
-          console.log(response.data)
+          loadProdutos()
+          console.log('cliente excluido com sucesso')
         })
         .catch(error => console.log(error))
       setOpen(false);
