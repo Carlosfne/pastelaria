@@ -143,14 +143,14 @@ const UsersTable = props => {
         .catch(error => console.log(error.response))
     }
     async function getProdutoUnique(){
-      // api.post('produtos/detalhe',id)
-      //   .then(response =>{
-      //     console.log(response.data)
-      //     setProdutoUnique(response.data.produtos)
-      //   })
-      //   .catch(error =>{
-      //     console.log(error.response)
-      //   })
+      api.post('relatorio/diario',id)
+        .then(response =>{
+          console.log(response.data)
+          setProdutoUnique(response.data.comandas)
+        })
+        .catch(error =>{
+          console.log(error.response)
+        })
     }
   
     useEffect(() => {
@@ -454,21 +454,21 @@ const UsersTable = props => {
                 <TableHead>
                   <TableRow>
                     {/* <TableCell>Data</TableCell> */}
-                    <TableCell>Valor Total</TableCell>                  
-                    <TableCell>Valor em Dinheiro</TableCell>                  
-                    <TableCell>Valor em cartão</TableCell>                  
+                    <TableCell>Valor Total Vendido no dia</TableCell>                  
+                    {/* <TableCell>Valor em Dinheiro</TableCell>                  
+                    <TableCell>Valor em cartão</TableCell>                   */}
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {/* {products.map(user => ( */}
+                  {products.map(user => (
                     <TableRow                    
                       hover
                       // key={user.id}
                     >                                     
                       {/* <TableCell>{moment(user.data).format('DD/MM/YYYY - hh:mm')}</TableCell> */}
-                      <TableCell>R$ 3.000,00</TableCell>
-                      <TableCell>R$ 1.500,00</TableCell>
-                      <TableCell>R$ 1.500,00</TableCell>
+                      <TableCell>{user.totalDia}</TableCell>
+                      {/* <TableCell>R$ 1.500,00</TableCell>
+                      <TableCell>R$ 1.500,00</TableCell> */}
                       {/* <TableCell>{user.numitens}</TableCell>
                       <TableCell>{!user.formaDePagamento ? 'não informado' : user.formaDePagamento}</TableCell> */}
                       {/* <TableCell>
@@ -484,7 +484,7 @@ const UsersTable = props => {
                         </div>
                       </TableCell>                     */}
                     </TableRow>
-                  {/* ))} */}
+                  ))}
                 </TableBody>
               </Table>
             </div>
