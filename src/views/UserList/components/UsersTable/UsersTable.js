@@ -441,7 +441,7 @@ const UsersTable = props => {
           className="btn-add-new-produto"
           onClick={toggleDrawer('right', true)}
           // value={marca.id}
-        >Adicionar novo produto</button>
+        >Novo produto</button>
   
         <Drawer
           anchor="right"
@@ -577,7 +577,7 @@ const UsersTable = props => {
                     <TableCell>{produto.quantidadeAtual}</TableCell>
                     <TableCell>{produto.quantidadeMinima}</TableCell>
                     <TableCell>{produto.quantidadeMaxima}</TableCell>
-                    <TableCell>{produto.validade}</TableCell>
+                    <TableCell>{moment(produto.validade).format('DD/MM/YYYY')}</TableCell>
                     <TableCell>{produto.preco}</TableCell>
                     <TableCell>{produto.fornecedor.nome}</TableCell>
                     <TableCell>

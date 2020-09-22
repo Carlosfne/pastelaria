@@ -29,7 +29,7 @@ const Footer = props => {
         >
           CFM - Software House
         </Link>
-        . 2020
+        . 2020 - V.1.0.2 
       </Typography>
       <Typography variant="caption">
         Software House.

@@ -89,9 +89,9 @@ const UsersTable = props => {
     setSelectedUsers(newSelectedUsers);
   };
   async function loadProdutos(){
-    const response = await api.post('/fornecedor/detalhe')
-    console.log(response.data.fornecedor)
-    setProducts(response.data.fornecedor)    
+    const response = await api.post('/comanda/detalhe')
+    console.log(response.data.comandas)
+    setProducts(response.data.comandas)    
 
   }
 
@@ -432,7 +432,7 @@ const UsersTable = props => {
   }, [])
   return (
     <>
-    <TemporaryDrawer />
+    {/* <TemporaryDrawer /> */}
       <Card
         {...rest}
         className={clsx(classes.root, className)}
@@ -443,9 +443,10 @@ const UsersTable = props => {
               <Table >
                 <TableHead>
                   <TableRow>
-                    <TableCell>Nome</TableCell>
-                    <TableCell>Contato</TableCell>                  
-                    <TableCell>Opções</TableCell>                  
+                    <TableCell>Data</TableCell>
+                    <TableCell>Valor Total</TableCell>                  
+                    <TableCell>Número de Itens</TableCell>                  
+                    <TableCell>Forma de Pagamento</TableCell>                  
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -454,9 +455,11 @@ const UsersTable = props => {
                       hover
                       key={user.id}
                     >                                     
-                      <TableCell>{user.nome}</TableCell>                    
-                      <TableCell>{user.contato}</TableCell>
-                      <TableCell>
+                      <TableCell>{moment(user.data).format('DD/MM/YYYY - hh:mm')}</TableCell>
+                      <TableCell>R$ {user.valorTotal}</TableCell>
+                      <TableCell>{user.numitens}</TableCell>
+                      <TableCell>{!user.formaDePagamento ? 'não informado' : user.formaDePagamento}</TableCell>
+                      {/* <TableCell>
                         <div className="btns-options">
                           <EditDrawer 
                             className="btn-edit"
@@ -467,7 +470,7 @@ const UsersTable = props => {
                             value={user.id}
                           />
                         </div>
-                      </TableCell>                    
+                      </TableCell>                     */}
                     </TableRow>
                   ))}
                 </TableBody>

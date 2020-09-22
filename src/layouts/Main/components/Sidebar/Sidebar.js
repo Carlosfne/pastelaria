@@ -8,6 +8,7 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import StarIcon from '@material-ui/icons/Star';
 import AssignmentIcon from '@material-ui/icons/Assignment';
+import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
 import BlurOnIcon from '@material-ui/icons/BlurOn';
 import MapIcon from '@material-ui/icons/Map';
 
@@ -57,11 +58,21 @@ const Sidebar = props => {
       href: '/Fornecedores',
       icon: <AssignmentIcon />
     },
-    // {
-    //   title: 'Patrocinadores',
-    //   href: '/Patrocinadores',
-    //   icon: <StarIcon />
-    // },
+    {
+      title: 'Comandas em aberto',
+      href: '/comandas',
+      icon: <AssignmentTurnedInIcon />
+    },
+    {
+      title: 'Comandas fechadas do dia',
+      href: '/comandasdia',
+      icon: <AssignmentTurnedInIcon />
+    },
+    {
+      title: 'Fechamento de Caixa',
+      href: '/fechamento',
+      icon: <AssignmentTurnedInIcon />
+    },
     // {
     //   title: 'Expositores',
     //   href: '/expositores',

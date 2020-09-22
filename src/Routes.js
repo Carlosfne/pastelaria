@@ -13,6 +13,9 @@ import {
   SignIn as SignInView,
   NotFound as NotFoundView,
   Fornecedores as Fornecedores,
+  Comandas as Comandas, 
+  ComandasdoDia as ComandasdoDia,
+  Fechamento as Fechamento,
 } from './views';
 
 const Routes = () => {
@@ -46,6 +49,24 @@ const Routes = () => {
         exact
         layout={MainLayout}
         path="/account"
+      />
+      <RouteWithLayout
+        component={Comandas}
+        exact
+        layout={MainLayout}
+        path="/comandas"
+      />
+      <RouteWithLayout
+        component={ComandasdoDia}
+        exact
+        layout={MainLayout}
+        path="/comandasdia"
+      />
+      <RouteWithLayout
+        component={Fechamento}
+        exact
+        layout={MainLayout}
+        path="/fechamento"
       />
       <RouteWithLayout
         component={SettingsView}

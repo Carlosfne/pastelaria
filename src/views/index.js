@@ -10,3 +10,6 @@ export { default as Expositores } from './Expositores';
 export { default as Mapas } from './Mapas';
 export { default as Noticias } from './Noticias';
 export { default as Fornecedores } from './Fornecedores';
+export { default as Comandas } from './Comandas';
+export { default as ComandasdoDia } from './ComandasdoDia';
+export { default as Fechamento } from './Fechamento';
